@@ -7,9 +7,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.faq.FAQScreen
-import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.home.HomeScreen
-import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.ideas.IdeasScreen
+import com.studioscrossbar.mordhaumercs.ui.screens.faq.FAQScreen
+import com.studioscrossbar.mordhaumercs.ui.screens.home.HomeScreen
+import com.studioscrossbar.mordhaumercs.ui.screens.ideas.IdeasScreen
 import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.overview.MercBuildOverviewScreen
 
 

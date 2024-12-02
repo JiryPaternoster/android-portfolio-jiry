@@ -1,4 +1,4 @@
-package com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.home
+package com.studioscrossbar.mordhaumercs.ui.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

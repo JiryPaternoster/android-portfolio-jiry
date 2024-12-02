@@ -1,4 +1,4 @@
-package com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.ideas
+package com.studioscrossbar.mordhaumercs.ui.screens.ideas
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -14,6 +14,7 @@ fun IdeasScreen() {
         Text(text = "Welcome to Ideas!")
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
