@@ -77,6 +77,11 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.serialization.json.v160)
 
+    //Scrollable images
+    implementation(libs.androidx.foundation)
+    //Below library is deprecated use above library .pager
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicators)
 
 
 
