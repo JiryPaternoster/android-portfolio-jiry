@@ -14,17 +14,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.studioscrossbar.mordhaumercs.data.BuildListItem
+import com.studioscrossbar.mordhaumercs.ui.theme.GreyBackground
 
 @Composable
 fun MercBuildComponent(buildItem: BuildListItem, modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier.size(180.dp)
-            .border(
-                width = 2.dp,
-                color = Color.Red,
+            .background(
+                color = GreyBackground,
                 shape = RoundedCornerShape(16.dp)
             )
     ){
@@ -33,9 +34,11 @@ fun MercBuildComponent(buildItem: BuildListItem, modifier: Modifier = Modifier) 
                 modifier = Modifier.height(140.dp),
                 model = buildItem.imageLocation,
                 contentDescription = buildItem.title,
+                contentScale = ContentScale.Fit
             )
             HorizontalDivider()
             Text(text = buildItem.title)
+            Text(text = "By ${buildItem.username}")
         }
 
 
