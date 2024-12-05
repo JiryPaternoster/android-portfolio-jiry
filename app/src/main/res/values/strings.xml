@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MordhauMercs</string>
+    <string name="home_label">Home</string>
+    <string name="builds_label">Builds</string>
+    <string name="ideas_label">Ideas</string>
+    <string name="faq_label">FAQ</string>
 </resources>
