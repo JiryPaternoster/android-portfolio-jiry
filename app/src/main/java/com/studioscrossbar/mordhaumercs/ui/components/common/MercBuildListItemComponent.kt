@@ -1,7 +1,6 @@
-package com.studioscrossbar.mordhaumercs.ui.components
+package com.studioscrossbar.mordhaumercs.ui.components.common
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -21,9 +19,9 @@ import com.studioscrossbar.mordhaumercs.data.BuildListItem
 import com.studioscrossbar.mordhaumercs.ui.theme.GreyBackground
 
 @Composable
-fun MercBuildComponent(buildItem: BuildListItem, modifier: Modifier = Modifier) {
+fun MercBuildListItemComponent(buildItem: BuildListItem, modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier.size(180.dp)
+        modifier = modifier.size(180.dp)
             .background(
                 color = GreyBackground,
                 shape = RoundedCornerShape(16.dp)

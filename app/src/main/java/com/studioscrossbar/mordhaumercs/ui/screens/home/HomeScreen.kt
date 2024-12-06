@@ -6,13 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.studioscrossbar.mordhaumercs.ui.components.BannerSlider
+import com.studioscrossbar.mordhaumercs.ui.components.common.BannerSlider
 
 @Composable
 fun HomeScreen() {
     Column {
-        Text(text = "Welcome to the mordhau mercs library", fontSize = 32.sp, fontWeight = FontWeight.Bold)
         BannerSlider()
+        Text(text = "Welcome to the mordhau mercs library", fontSize = 32.sp, fontWeight = FontWeight.Bold)
     }
 
 }

@@ -12,6 +12,9 @@ sealed class RootScreen(val route: String) {
 sealed class LeafScreen(val route: String) {
     object Home : LeafScreen("home")
     object Builds : LeafScreen("builds")
+    object BuildDetail : LeafScreen("build_detail/{buildId}") {
+        fun createRoute(buildId: Int) = "build_detail/$buildId"
+    }
     object Ideas : LeafScreen("ideas")
     object Faq : LeafScreen("faq")
 }
