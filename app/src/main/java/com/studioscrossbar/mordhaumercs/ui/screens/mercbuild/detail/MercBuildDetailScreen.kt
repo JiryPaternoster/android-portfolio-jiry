@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.studioscrossbar.mordhaumercs.ui.components.icons.CopyIcon
 import com.studioscrossbar.mordhaumercs.ui.helpers.UiState
+import com.studioscrossbar.mordhaumercs.ui.screens.common.ErrorScreen
 import com.studioscrossbar.mordhaumercs.ui.screens.common.LoadingScreen
 import com.studioscrossbar.mordhaumercs.ui.theme.GreyBackground
 import org.koin.compose.viewmodel.koinViewModel
@@ -40,8 +41,8 @@ import org.koin.core.parameter.parametersOf
 fun MercBuildDetailPage(buildId: Int, viewModel : MercBuildDetailViewModel = koinViewModel(parameters = { parametersOf(buildId) }), modifier: Modifier = Modifier) {
 
         val uiState by viewModel.mercBuildDetailUiState
-        when(uiState){
-                is UiState.Error -> TODO()
+        when(val state = uiState){
+                is UiState.Error -> ErrorScreen(state.exception)
                 UiState.Loading -> LoadingScreen("Loading build...")
                 is UiState.Success -> MercBuildDetailScreen(modifier, viewModel)
         }

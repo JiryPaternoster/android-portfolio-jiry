@@ -21,9 +21,9 @@ fun MainScreen() {
     val currentSelectedScreen by navController.currentScreenAsState() // Observe current screen
 
     Scaffold(
-//        topBar = {
-//            TopContextBar(navController = navController)
-//        },
+        topBar = {
+            TopContextBar(navController = navController)
+        },
         bottomBar = {
             BottomNavBar(navController = navController, currentSelectedScreen = currentSelectedScreen)
         },

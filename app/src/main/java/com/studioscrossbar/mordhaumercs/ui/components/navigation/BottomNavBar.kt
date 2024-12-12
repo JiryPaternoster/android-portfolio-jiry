@@ -36,20 +36,20 @@ fun BottomNavBar(
             label = { Text(text = stringResource(id = R.string.builds_label)) },
             icon = { Icon(imageVector = Icons.Default.Build, contentDescription = "Builds") }
         )
-        NavigationBarItem(
-            selected = currentSelectedScreen == RootScreen.Ideas,
-            onClick = { navController.navigateToRootScreen(RootScreen.Ideas) },
-            alwaysShowLabel = true,
-            label = { Text(text = stringResource(id = R.string.ideas_label)) },
-            icon = { Icon(imageVector = Icons.Default.Create, contentDescription = "Ideas") }
-        )
-        NavigationBarItem(
-            selected = currentSelectedScreen == RootScreen.Faq,
-            onClick = { navController.navigateToRootScreen(RootScreen.Faq) },
-            alwaysShowLabel = true,
-            label = { Text(text = stringResource(id = R.string.faq_label)) },
-            icon = { Icon(imageVector = Icons.Default.Call, contentDescription = "FAQ") }
-        )
+//        NavigationBarItem(
+//            selected = currentSelectedScreen == RootScreen.Ideas,
+//            onClick = { navController.navigateToRootScreen(RootScreen.Ideas) },
+//            alwaysShowLabel = true,
+//            label = { Text(text = stringResource(id = R.string.ideas_label)) },
+//            icon = { Icon(imageVector = Icons.Default.Create, contentDescription = "Ideas") }
+//        )
+//        NavigationBarItem(
+//            selected = currentSelectedScreen == RootScreen.Faq,
+//            onClick = { navController.navigateToRootScreen(RootScreen.Faq) },
+//            alwaysShowLabel = true,
+//            label = { Text(text = stringResource(id = R.string.faq_label)) },
+//            icon = { Icon(imageVector = Icons.Default.Call, contentDescription = "FAQ") }
+//        )
     }
 }
 

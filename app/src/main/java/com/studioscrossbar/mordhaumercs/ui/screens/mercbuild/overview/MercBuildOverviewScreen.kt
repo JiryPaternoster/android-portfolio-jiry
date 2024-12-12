@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.studioscrossbar.mordhaumercs.ui.components.common.MercBuildListItemComponent
 import com.studioscrossbar.mordhaumercs.ui.helpers.UiState
+import com.studioscrossbar.mordhaumercs.ui.screens.common.ErrorScreen
 import com.studioscrossbar.mordhaumercs.ui.screens.common.LoadingScreen
 import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.detail.MercBuildDetailScreen
 import org.koin.compose.viewmodel.koinViewModel
@@ -31,8 +32,8 @@ import org.koin.compose.viewmodel.koinViewModel
 fun MercBuildOverviewPage(onBuildClick : (Int) -> Unit, modifier: Modifier = Modifier, viewModel: MercBuildOverviewViewModel = koinViewModel()) {
 
     val uiState by viewModel.mercBuildOverviewUiState
-    when(uiState){
-        is UiState.Error -> TODO()
+    when(val state = uiState){
+        is UiState.Error -> ErrorScreen(state.exception)
         UiState.Loading -> LoadingScreen("Loading builds...")
         is UiState.Success -> MercBuildOverviewScreen(onBuildClick, modifier, viewModel)
     }
