@@ -14,10 +14,12 @@ data class BuildListItem(
 
 @Serializable
 data class Build(
-    val id : Int,
-    val userId : Int,
+    @SerialName("build_id") val id : Int,
+    val username : String,
+    @SerialName("user_id") val userId : Int,
     val title : String,
-    val configLines : String,
     val description: String,
-    val imageLocation: String
+    val configlines : String,
+    @SerialName("image_location") val imageLocation: String,
+    val categories : List<String>
 )

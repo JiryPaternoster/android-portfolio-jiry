@@ -9,8 +9,8 @@ import com.studioscrossbar.mordhaumercs.ui.screens.MainScreen
 import com.studioscrossbar.mordhaumercs.ui.theme.MordhauMercsTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.compose.KoinContext
 import org.koin.core.context.GlobalContext
-import org.koin.core.context.startKoin
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +28,10 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
-            MordhauMercsTheme {
-                MainScreen()
+            KoinContext {
+                MordhauMercsTheme {
+                    MainScreen()
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.studioscrossbar.mordhaumercs.ui.components
+package com.studioscrossbar.mordhaumercs.ui.components.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -54,7 +54,6 @@ fun BannerSlider(modifier : Modifier = Modifier) {
         HorizontalPager(
             count = imageSlider.size,
             state = pagerState,
-            contentPadding = PaddingValues(horizontal = 16.dp),
             modifier = Modifier
                 .height(296.dp)
                 .fillMaxWidth()

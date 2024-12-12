@@ -8,10 +8,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph
 import androidx.navigation.compose.rememberNavController
 import com.studioscrossbar.mordhaumercs.navigation.AppNavGraph
 import com.studioscrossbar.mordhaumercs.navigation.RootScreen
 import com.studioscrossbar.mordhaumercs.ui.components.navigation.BottomNavBar
+import com.studioscrossbar.mordhaumercs.ui.components.navigation.TopContextBar
 
 @Composable
 fun MainScreen() {
@@ -19,6 +21,9 @@ fun MainScreen() {
     val currentSelectedScreen by navController.currentScreenAsState() // Observe current screen
 
     Scaffold(
+        topBar = {
+            TopContextBar(navController = navController)
+        },
         bottomBar = {
             BottomNavBar(navController = navController, currentSelectedScreen = currentSelectedScreen)
         },
@@ -39,7 +44,7 @@ fun MainScreen() {
 // Observe the current screen state
 @Stable
 @Composable
-private fun NavController.currentScreenAsState(): State<RootScreen> {
+fun NavController.currentScreenAsState(): State<RootScreen> {
     val selectedItem = remember { mutableStateOf<RootScreen>(RootScreen.Home) }
     DisposableEffect(key1 = this) {
         val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
@@ -65,3 +70,4 @@ private fun NavController.currentScreenAsState(): State<RootScreen> {
     }
     return selectedItem
 }
+
