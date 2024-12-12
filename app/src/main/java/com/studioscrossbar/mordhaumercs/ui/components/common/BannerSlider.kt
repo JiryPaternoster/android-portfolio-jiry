@@ -54,7 +54,6 @@ fun BannerSlider(modifier : Modifier = Modifier) {
         HorizontalPager(
             count = imageSlider.size,
             state = pagerState,
-            contentPadding = PaddingValues(horizontal = 16.dp),
             modifier = Modifier
                 .height(296.dp)
                 .fillMaxWidth()

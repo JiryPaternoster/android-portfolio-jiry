@@ -10,7 +10,6 @@ import com.studioscrossbar.mordhaumercs.ui.theme.MordhauMercsTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
-import org.koin.core.context.startKoin
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

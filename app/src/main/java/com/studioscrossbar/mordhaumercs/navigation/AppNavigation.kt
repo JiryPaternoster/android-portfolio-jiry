@@ -12,7 +12,9 @@ import androidx.navigation.navigation
 import com.studioscrossbar.mordhaumercs.ui.screens.faq.FAQScreen
 import com.studioscrossbar.mordhaumercs.ui.screens.home.HomeScreen
 import com.studioscrossbar.mordhaumercs.ui.screens.ideas.IdeasScreen
+import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.detail.MercBuildDetailPage
 import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.detail.MercBuildDetailScreen
+import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.overview.MercBuildOverviewPage
 import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.overview.MercBuildOverviewScreen
 
 
@@ -50,8 +52,7 @@ private fun NavGraphBuilder.addBuildsRoute(navController: NavController) {
         startDestination = LeafScreen.Builds.route
     ) {
         composable(route = LeafScreen.Builds.route) {
-            MercBuildOverviewScreen(onBuildClick = { buildId ->
-                println("Hey bro you clicked me $buildId")
+            MercBuildOverviewPage(onBuildClick = { buildId ->
                 navController.navigate(LeafScreen.BuildDetail.createRoute(buildId))
             })
         }
@@ -60,7 +61,7 @@ private fun NavGraphBuilder.addBuildsRoute(navController: NavController) {
             arguments = listOf(navArgument("buildId") { type = NavType.IntType })
         ) { backStackEntry ->
             val buildId : Int = (backStackEntry.arguments?.getInt("buildId") ?: "") as Int
-            MercBuildDetailScreen(buildId = buildId)
+            MercBuildDetailPage(buildId = buildId)
         }
     }
 }

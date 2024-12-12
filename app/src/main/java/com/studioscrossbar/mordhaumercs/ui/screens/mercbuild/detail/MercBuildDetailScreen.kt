@@ -8,7 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults.elevation
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,13 +28,28 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.studioscrossbar.mordhaumercs.ui.components.icons.CopyIcon
+import com.studioscrossbar.mordhaumercs.ui.helpers.UiState
+import com.studioscrossbar.mordhaumercs.ui.screens.common.LoadingScreen
 import com.studioscrossbar.mordhaumercs.ui.theme.GreyBackground
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 
 @Composable
-fun MercBuildDetailScreen(buildId: Int, modifier: Modifier = Modifier, viewModel : MercBuildDetailViewModel = koinViewModel(parameters = { parametersOf(buildId) })) {
+fun MercBuildDetailPage(buildId: Int, viewModel : MercBuildDetailViewModel = koinViewModel(parameters = { parametersOf(buildId) }), modifier: Modifier = Modifier) {
+
+        val uiState by viewModel.mercBuildDetailUiState
+        when(uiState){
+                is UiState.Error -> TODO()
+                UiState.Loading -> LoadingScreen("Loading build...")
+                is UiState.Success -> MercBuildDetailScreen(modifier, viewModel)
+        }
+
+}
+
+@Composable
+fun MercBuildDetailScreen(modifier: Modifier = Modifier, viewModel : MercBuildDetailViewModel) {
         val build by viewModel.build
 
         val configuration = LocalConfiguration.current
@@ -36,9 +57,10 @@ fun MercBuildDetailScreen(buildId: Int, modifier: Modifier = Modifier, viewModel
         val screenWidthDp : Dp = configuration.screenWidthDp.dp;
         val fiftyVh = screenHeightDp * 0.5f
         val seventyVw = screenWidthDp * 0.8f
+        val scrollState = rememberScrollState()
 
         if(build != null){
-                Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.fillMaxSize()) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.fillMaxSize().verticalScroll(scrollState)) {
                         Text(text = build!!.title,fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
                         AsyncImage(
                                 modifier = Modifier.height(fiftyVh),
@@ -47,8 +69,21 @@ fun MercBuildDetailScreen(buildId: Int, modifier: Modifier = Modifier, viewModel
                                 contentScale = ContentScale.Fit
                         )
                         Spacer(modifier = Modifier.size(50.dp))
-                        Box(modifier = Modifier.width(seventyVw).background(color = GreyBackground, shape = RoundedCornerShape(16.dp))){
+                        Box(modifier = Modifier
+                                .width(seventyVw)
+                                .background(
+                                        color = GreyBackground,
+                                        shape = RoundedCornerShape(16.dp)
+                                )){
                                 Text(text = build!!.configlines)
+                                IconButton(
+                                        onClick = {
+                                                // TODO
+                                        },
+                                        modifier = Modifier.align(Alignment.TopEnd),
+                                ) {
+                                        Icon(imageVector = CopyIcon, contentDescription = "Copy config lines to clipboard")
+                                }
                         }
 
                 }

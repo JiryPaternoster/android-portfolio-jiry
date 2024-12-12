@@ -22,7 +22,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.studioscrossbar.mordhaumercs.ui.components.common.MercBuildListItemComponent
+import com.studioscrossbar.mordhaumercs.ui.helpers.UiState
+import com.studioscrossbar.mordhaumercs.ui.screens.common.LoadingScreen
+import com.studioscrossbar.mordhaumercs.ui.screens.mercbuild.detail.MercBuildDetailScreen
 import org.koin.compose.viewmodel.koinViewModel
+
+@Composable
+fun MercBuildOverviewPage(onBuildClick : (Int) -> Unit, modifier: Modifier = Modifier, viewModel: MercBuildOverviewViewModel = koinViewModel()) {
+
+    val uiState by viewModel.mercBuildOverviewUiState
+    when(uiState){
+        is UiState.Error -> TODO()
+        UiState.Loading -> LoadingScreen("Loading builds...")
+        is UiState.Success -> MercBuildOverviewScreen(onBuildClick, modifier, viewModel)
+    }
+}
 
 @Composable
 fun MercBuildOverviewScreen(onBuildClick : (Int) -> Unit, modifier: Modifier = Modifier, viewModel: MercBuildOverviewViewModel = koinViewModel()) {
@@ -30,7 +44,11 @@ fun MercBuildOverviewScreen(onBuildClick : (Int) -> Unit, modifier: Modifier = M
     val builds by viewModel.builds
 
     Column(modifier = modifier.padding(16.dp)) {
-        Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.padding(bottom = 32.dp).fillMaxWidth()) {
+        Row(horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+            .padding(bottom = 32.dp)
+            .fillMaxWidth()
+        ) {
             Text(text = "Discover", fontWeight = FontWeight.Bold, fontSize = 32.sp)
             Box { Icon(imageVector = Icons.Default.Search, contentDescription = "Search builds") }
         }
@@ -40,7 +58,9 @@ fun MercBuildOverviewScreen(onBuildClick : (Int) -> Unit, modifier: Modifier = M
         ) {
             items(builds) { build ->
                 Box(
-                    modifier = Modifier.fillMaxSize().padding(8.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(8.dp),
                 ) {
                     MercBuildListItemComponent(buildItem = build, modifier = Modifier.clickable { println("You clicked me"); onBuildClick(build.id) })
                 }
