@@ -1,9 +1,6 @@
 package com.studioscrossbar.mordhaumercs.ui.components.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Build
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -15,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.studioscrossbar.mordhaumercs.R
 import com.studioscrossbar.mordhaumercs.navigation.RootScreen
+import com.studioscrossbar.mordhaumercs.ui.components.icons.BuildsIcon
 
 @Composable
 fun BottomNavBar(
@@ -34,7 +32,7 @@ fun BottomNavBar(
             onClick = { navController.navigateToRootScreen(RootScreen.Builds) },
             alwaysShowLabel = true,
             label = { Text(text = stringResource(id = R.string.builds_label)) },
-            icon = { Icon(imageVector = Icons.Default.Build, contentDescription = "Builds") }
+            icon = { Icon(imageVector = BuildsIcon, contentDescription = "Builds") }
         )
 //        NavigationBarItem(
 //            selected = currentSelectedScreen == RootScreen.Ideas,

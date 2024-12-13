@@ -40,7 +40,11 @@ private fun NavGraphBuilder.addHomeRoute(navController: NavController) {
         startDestination = LeafScreen.Home.route
     ) {
         composable(route = LeafScreen.Home.route) {
-             HomeScreen()
+             HomeScreen(
+                 onGotoBuildsClick = {
+                     navController.navigate(RootScreen.Builds.route)
+                 }
+             )
         }
     }
 }
