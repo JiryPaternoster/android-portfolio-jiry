@@ -1,0 +1,34 @@
+name: AndroidBuild
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3.13.0
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Grant execute permissions for gradlew (Linux only)
+        run: chmod +x ./gradlew
+        if: runner.os != 'Windows'
+
+      - name: Build Debug APK with Gradle
+        run: ./gradlew assembleDebug
+        
+      - name: Upload the APK as a build artifact
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: dsTemplate.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
