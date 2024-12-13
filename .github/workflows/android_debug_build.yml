@@ -6,6 +6,11 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: write
+  id-token: write
+  actions: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,21 +26,21 @@ jobs:
           java-version: '17'
 
       - name: Grant execute permissions for gradlew
-        run: chmod +x ./gradlew  # This grants execute permissions to gradlew script
+        run: chmod +x ./gradlew
 
       - name: Build Debug APK with Gradle
-        run: ./gradlew assembleDebug  # This will build the debug APK
+        run: ./gradlew assembleDebug
 
       - name: Get Current Date
         id: date
-        run: echo "RELEASE_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV  # Just the date part for the release name
+        run: echo "RELEASE_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: v${{ github.run_number }}-${{ env.RELEASE_DATE }}  # Use run number and release date
-          release_name: "Release v${{ github.run_number }}-${{ env.RELEASE_DATE }}"  # Structured release name
+          tag_name: v${{ github.run_number }}-${{ env.RELEASE_DATE }}
+          release_name: "Release v${{ github.run_number }}-${{ env.RELEASE_DATE }}"
           body: "Automated release with the latest APK"
           draft: false
           prerelease: false
@@ -46,6 +51,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app/build/outputs/apk/debug/app-debug.apk  # Path to the debug APK
-          asset_name: MordhauMercs-debug.apk  # Change the name if needed
+          asset_path: app/build/outputs/apk/debug/app-debug.apk
+          asset_name: MordhauMercs-debug.apk
           asset_content_type: application/vnd.android.package-archive
