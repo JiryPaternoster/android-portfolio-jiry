@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -45,7 +46,7 @@ fun HomeScreen(onGotoBuildsClick : () -> Unit, modifier: Modifier = Modifier) {
 
     Column(modifier = modifier.padding(16.dp).verticalScroll(scrollState)) {
         Text(text = "Welcome to the mordhau mercs library", fontSize = 32.sp, fontWeight = FontWeight.Bold)
-        BannerSlider()
+        BannerSlider(modifier = Modifier.testTag("BannerSlider"))
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             PhotoComment(painterResource(R.drawable.mordhaubanner0), "Share Your Battle-Ready Mercenaries","Got a mercenary configuration that’s been leading you to victory? Share it with the Mordhau community and let others benefit from your battle-tested setups.")
             PhotoComment(painterResource(R.drawable.mordhaubanner1), "Discover New Configurations","Explore a wide range of mercenary configurations shared by fellow players. Find new strategies and tactics to enhance your gameplay.", false)
@@ -57,7 +58,7 @@ fun HomeScreen(onGotoBuildsClick : () -> Unit, modifier: Modifier = Modifier) {
                 .height(320.dp)
                 .background(
                    gradient
-                ),
+                ).testTag("GradientBox"),
                 contentAlignment = Alignment.Center
             ){
                 Column {

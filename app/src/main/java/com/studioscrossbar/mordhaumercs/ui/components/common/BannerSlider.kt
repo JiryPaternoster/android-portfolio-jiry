@@ -50,7 +50,7 @@ fun BannerSlider(modifier : Modifier = Modifier) {
             )
         }
     }
-    Column {
+    Column(modifier) {
         HorizontalPager(
             count = imageSlider.size,
             state = pagerState,
